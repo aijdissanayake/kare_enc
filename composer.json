@@ -1,0 +1,24 @@
+{
+    "name": "kare/kare_enc",
+    "description": "RSA encryption package by kare.",
+    "keywords": ["encryption", "encryption", "composer", "package"],
+    "license": "DBAD",
+    "authors": [
+        {
+            "name": "Achala Dissanayake",
+            "email": "aijdissanayake@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": ">=5.4"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "kare\\kare_enc\\": "src/"
+        }
+    }
+}
