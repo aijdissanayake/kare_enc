@@ -2,7 +2,7 @@
     "name": "kare/kare_enc",
     "description": "RSA encryption package by kare.",
     "keywords": ["encryption", "encryption", "composer", "package"],
-    "license": "DBAD",
+    "license": "MIT",
     "authors": [
         {
             "name": "Achala Dissanayake",
