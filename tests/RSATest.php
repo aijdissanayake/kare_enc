@@ -17,10 +17,11 @@ class RSATest extends PHPUnit_Framework_TestCase{
   * any typo before you even use this library in a real project.
   *
   */
+
   public function testIsThereAnySyntaxError(){
-	$var = new kare\kare_enc\RSA;
-	$this->assertTrue(is_object($var));
-	unset($var);
+    $var = new kare\kare_enc\RSA;
+    $this->assertTrue(is_object($var));
+    unset($var);
   }
   
   /**
@@ -30,10 +31,21 @@ class RSATest extends PHPUnit_Framework_TestCase{
   * any typo before you even use this library in a real project.
   *
   */
-  public function testMethod1(){
-	$var = new kare\kare_enc\RSA;
-	$this->assertTrue($var->encrypt("hey") == 'hey');
-	unset($var);
+
+  public function testPublicKeyEncrypt(){
+    $var = new kare\kare_enc\RSA;
+    $pubkey = openssl_pkey_get_public(file_get_contents('sample_public.key'));
+    $this->assertTrue(strlen($var->publicKeyEncrypt("abcde", $pubkey)) > 0);
+    unset($var);
   }
   
+  public function testPrivateKeyDecrypt(){
+    $var = new kare\kare_enc\RSA;
+    $pubkey = openssl_pkey_get_public(file_get_contents('sample_public.key'));
+    $pvtkey = openssl_pkey_get_private(file_get_contents('sample_private.key'));
+    $enc = $var->publicKeyEncrypt("abcde", $pubkey);
+    $dec = $var->privateKeyDecrypt($enc, $pvtkey);
+    $this->assertTrue($var->privateKeyDecrypt($enc, $pvtkey) == 'abcde');
+    unset($var);
+  }
 }

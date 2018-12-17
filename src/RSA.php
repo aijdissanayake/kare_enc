@@ -23,7 +23,14 @@ class RSA{
   *
   * @return string
   */
-   public function encrypt($message){
-			return $message;
+
+   public function publicKeyEncrypt($message, $publicKey){
+        openssl_public_encrypt($message, $encrypted, $publicKey);
+        return $encrypted;
+   }
+
+   public function privateKeyDecrypt($encryptedMessage, $privateKey){
+        openssl_private_decrypt($encryptedMessage, $decrypted, $privateKey);
+        return $decrypted;
    }
 }
