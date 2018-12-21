@@ -8,7 +8,7 @@
 *
 *  @author Achala
 */
-class RSA{
+final class RSA{
 
    /**  @var string $m_SampleProperty define here what this variable is for, do this for every instance variable */
    private $enc_algo = 'RSA';
@@ -24,12 +24,12 @@ class RSA{
   * @return string
   */
 
-   public function publicKeyEncrypt($message, $publicKey){
+   public static function publicKeyEncrypt($message, $publicKey){
         openssl_public_encrypt($message, $encrypted, $publicKey);
         return $encrypted;
    }
 
-   public function privateKeyDecrypt($encryptedMessage, $privateKey){
+   public static function privateKeyDecrypt($encryptedMessage, $privateKey){
         openssl_private_decrypt($encryptedMessage, $decrypted, $privateKey);
         return $decrypted;
    }
