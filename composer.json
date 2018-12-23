@@ -1,6 +1,6 @@
 {
     "name": "kare/kare_enc",
-    "description": "RSA encryption package by kare.",
+    "description": "RSA encryption package by kare.Consists of functions to encrypt, decrypt, generate keys etc. Scroll down for the documentation.",
     "keywords": ["encryption", "encryption", "composer", "package"],
     "license": "MIT",
     "authors": [
