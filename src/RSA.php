@@ -6,6 +6,18 @@
 
 final class RSA{
 
+    public static function generateKeyPair($keyLength = 2048){
+        $config = array(
+            "digest_alg" => "sha256",
+            "private_key_bits" => $keyLength,
+            "private_key_type" => OPENSSL_KEYTYPE_RSA,
+        );
+        $res = openssl_pkey_new($config);
+        openssl_pkey_export($res, $privateKey);
+        $publicKey = openssl_pkey_get_details($res)["key"];
+        return ['privateKey' => $privateKey, 'publicKey' => $publicKey];
+    }
+
     public static function importPrivateKeyString($keyString){
         return openssl_pkey_get_private($keyString);
     }

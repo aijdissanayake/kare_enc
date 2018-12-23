@@ -14,6 +14,20 @@ class RSATest extends PHPUnit_Framework_TestCase{
     $this->assertTrue(is_object($var));
     unset($var);
   }
+
+  public function testGenerateKeyPair(){
+    $var = new kare\kare_enc\RSA;
+    $keyPair1 = $var->generateKeyPair();
+    $keyPair2 = $var->generateKeyPair(4096);
+    $this->assertTrue(sizeof($keyPair1)== 2);
+    $this->assertTrue(sizeof($keyPair2)== 2);
+    $pubKey = $keyPair1['publicKey'];
+    $pvtKey = $keyPair1['privateKey'];
+    $enc = $var->publicKeyEncrypt("abcde", $pubKey);
+    $dec = $var->privateKeyDecrypt($enc, $pvtKey);
+    $this->assertTrue($dec == 'abcde');
+    unset($var);
+  }
   
   public function testPublicKeyEncrypt(){
     $var = new kare\kare_enc\RSA;
