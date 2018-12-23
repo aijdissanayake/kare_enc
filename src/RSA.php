@@ -38,11 +38,11 @@ final class RSA{
     
     public static function publicKeyEncrypt($message, $publicKey){
         openssl_public_encrypt($message, $encrypted, $publicKey, $padding = OPENSSL_PKCS1_OAEP_PADDING);
-        return $encrypted;
+        return base64_encode($encrypted);
     }
 
     public static function privateKeyDecrypt($encryptedMessage, $privateKey){
-        openssl_private_decrypt($encryptedMessage, $decrypted, $privateKey, $padding = OPENSSL_PKCS1_OAEP_PADDING);
+        openssl_private_decrypt(base64_decode($encryptedMessage), $decrypted, $privateKey, $padding = OPENSSL_PKCS1_OAEP_PADDING);
         return $decrypted;
     }
 
